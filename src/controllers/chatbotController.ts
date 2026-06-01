@@ -1,6 +1,6 @@
 import { Context } from "grammy";
 import { PROVIDER_CHATBOT } from "../constant/providerChatbot.js";
-import { geminiService, openRouterService } from "../services/gptSerivice.js";
+import { openRouterService } from "../services/gptSerivice.js";
 import { textSchema } from "../schemas/textSchema.js";
 import { getErrorMessage } from "../utils/utils.js";
 import removeMd from "remove-markdown";
