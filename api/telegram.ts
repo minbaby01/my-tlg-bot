@@ -19,7 +19,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       "x-telegram-bot-api-secret-token"
     ] as string;
 
-    await qstash.publishJSON({
+    qstash.publishJSON({
       url: workerUrl,
       body: req.body,
       timeout: QSTASH_TIME_OUT,
