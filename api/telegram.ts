@@ -2,6 +2,7 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 import { guard } from "../src/guard/guard.js";
 import { qstash } from "../src/lib/qstash.js";
 import { QSTASH_TIME_OUT } from "../src/constant/constant.js";
+import { waitUntil } from "@vercel/functions";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
@@ -19,14 +20,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       "x-telegram-bot-api-secret-token"
     ] as string;
 
-    await qstash.publishJSON({
-      url: workerUrl,
-      body: req.body,
-      timeout: QSTASH_TIME_OUT,
-      headers: {
-        "x-telegram-bot-api-secret-token": secretTokenHeader,
-      },
-    });
+    waitUntil(
+      qstash.publishJSON({
+        url: workerUrl,
+        body: req.body,
+        timeout: QSTASH_TIME_OUT,
+        headers: {
+          "x-telegram-bot-api-secret-token": secretTokenHeader,
+        },
+      }),
+    );
 
     return res.status(200).json({
       message: "Received",

@@ -8,6 +8,7 @@
   "dependencies": {
     "@grammyjs/auto-chat-action": "^0.1.1",
     "@upstash/qstash": "^2.9.0",
+    "@vercel/functions": "^3.7.5",
     "@vercel/node": "^5.8.24",
     "axios": "^1.10.0",
     "dotenv": "^17.2.0",
@@ -20,7 +21,7 @@
   "devDependencies": {
     "@types/node": "^26.1.1",
     "tsx": "^4.23.1",
-    "typescript": "^7.0.2",
+    "typescript": "^6.0.3",
     "vercel": "^56.1.0"
   }
 }
