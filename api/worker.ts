@@ -10,10 +10,3 @@ export default async function worker(req: VercelRequest, res: VercelResponse) {
     });
   }
 }
-
-export const config = {
-  maxDuration: 300,
-  api: {
-    bodyParser: false,
-  },
-};
