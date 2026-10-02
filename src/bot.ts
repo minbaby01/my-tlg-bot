@@ -43,6 +43,6 @@ bot.command("update_inventory", updateInventory);
 bot.on("message", chatbotController);
 
 export const cb = webhookCallback(bot, "https", {
-  timeoutMilliseconds: 30000,
+  timeoutMilliseconds: 300000,
   secretToken: SECRET_TOKEN,
 });
