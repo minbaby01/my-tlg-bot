@@ -1,18 +1,19 @@
 import { VercelRequest } from "@vercel/node";
 import { MAX_DELAY } from "../constant/constant.js";
 import { isPostMethod } from "./isPostMethod.js";
+import { getAdmin } from "./getAdmin.js";
 
 export const guard = (req: VercelRequest) => {
   const { success, message } = isPostMethod(req);
   if (!success) {
     return {
       success: false,
+      code: 405,
       message: message,
     };
   }
 
-  const adminId = process.env.ADMIN_ID;
-  if (!adminId) throw new Error("Admin ID not found");
+  const adminId = getAdmin();
 
   const SECRET_TOKEN = process.env.TG_SECRET_TOKEN;
   if (!SECRET_TOKEN) throw new Error("Secret token not found");
@@ -23,6 +24,7 @@ export const guard = (req: VercelRequest) => {
   if (secretTokenHeader !== SECRET_TOKEN || body.message.from.id != adminId) {
     return {
       success: false,
+      code: 401,
       message: "Unauthorized",
     };
   }
@@ -32,6 +34,7 @@ export const guard = (req: VercelRequest) => {
     if (Date.now() - messageTime > MAX_DELAY) {
       return {
         success: false,
+        code: 200,
         message: "Skip message",
       };
     }
@@ -39,6 +42,7 @@ export const guard = (req: VercelRequest) => {
 
   return {
     success: true,
-    message: "",
+    code: 200,
+    message: "OK",
   };
 };

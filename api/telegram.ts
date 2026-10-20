@@ -4,9 +4,9 @@ import { forwardApi } from "../src/utils/telegram.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const { success, message } = guard(req);
+    const { success, message, code } = guard(req);
     if (!success) {
-      return res.status(200).json({
+      return res.status(code).json({
         message: message,
       });
     }
@@ -20,12 +20,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await forwardApi(workerUrl, secretToken, req);
 
-    return res.status(200).json({
+    return res.status(code).json({
       message: "Received",
     });
   } catch (err) {
     console.error(err);
-    return res.status(200).json({
+    return res.status(500).json({
       message: err,
     });
   }

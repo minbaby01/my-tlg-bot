@@ -7,20 +7,19 @@
   },
   "dependencies": {
     "@grammyjs/auto-chat-action": "^0.1.1",
-    "@upstash/qstash": "^2.12.0",
-    "@vercel/node": "^5.10.2",
+    "@vercel/node": "^25.0.0",
     "axios": "^1.20.0",
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.8",
     "firebase-admin": "^14.5.0",
     "grammy": "^1.46.0",
-    "openai": "^6.49.0",
-    "remove-markdown": "^0.6.4",
-    "zod": "^4.6.5"
+    "openai": "^7.39.0",
+    "remove-markdown": "^0.8.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.5",
     "tsx": "^4.23.15",
-    "typescript": "^6.0.3",
-    "vercel": "^56.5.0"
+    "typescript": "^7.0.2",
+    "vercel": "^64.7.0"
   }
 }
