@@ -13,7 +13,7 @@ export const forwardGuard = (req: VercelRequest) => {
 
   const FORWARD_SECRET_TOKEN = process.env.FORWARD_SECRET_TOKEN;
   if (!FORWARD_SECRET_TOKEN) throw new Error("Forward secret token not found");
-  const secretTokenHeader = req.headers["forward-secret-token"];
+  const secretTokenHeader = req.headers["x-forward-secret-token"];
 
   if (secretTokenHeader !== FORWARD_SECRET_TOKEN) {
     return {
